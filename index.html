@@ -468,14 +468,14 @@
             }
 
             // im fully aware that amount of calories needed differ from person to person
-            const meals = foodText 
+            const calories = parseFloat(foodText) 
                 .map(meal => meal.trim())
                 .filter(meal => meal !== "")
                 .length;
 
             // Check each requirement
             const sleepGood = sleep >= 7 && sleep <= 9;
-            const foodGood = meals >= 1500 && meals <= 5000;
+            const foodGood = calories >= 1500 && calories <= 5000;
             const happinessGood = happiness >= 6 && happiness <= 10;
             const waterGood = water >= 6 && water <= 8;
             const peopleGood = people >= 2 && people <= 7;
