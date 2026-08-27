@@ -27,6 +27,8 @@
             border-radius: 50px;
             opacity: 0.8;
             z-index: 0;
+            animation: float 3s ease-in-out infinite;
+            }
         }
 
         .cloud::before,
@@ -56,7 +58,7 @@
             height: 55px;
             top: 12%;
             left: -40px;
-            background: linear-gradient(270deg, FFFFFF 0%, D3D3D3 100%);
+            background: linear-gradient(270deg, #FFFFFF 0%, #D3D3D3 100%);
         }
 
         .cloud2 {
@@ -65,7 +67,7 @@
             top: 30%;
             right: -60px;
             transform: scale(0.8);
-            background: linear-gradient(270deg, FFFFFF 0%, D3D3D3 100%);
+            background: linear-gradient(270deg, #FFFFFF 0%, #D3D3D3 100%);
         }
 
         .cloud3 {
@@ -74,7 +76,7 @@
             top: 70%;
             left: 5%;
             transform: scale(0.7);
-            background: linear-gradient(270deg, FFFFFF 0%, D3D3D3 100%);
+            background: linear-gradient(270deg, #FFFFFF 0%, #D3D3D3 100%);
         }
         
 
@@ -85,6 +87,7 @@
             50% {
                 transform: translateY(-8px);
             }
+        }     
 
         .container {
             position: relative;
@@ -151,7 +154,7 @@
             border-top: 1px solid #c5e8f5;
         }
 
-        td:first-child {
+        td: first-child {
             font-weight: bold;
             color: #174a70;
             width: 45%;
@@ -352,10 +355,10 @@
                         <td>how many calories did you consume?</td>
                         <td>
                             <input
-                                type=number
-                                id="calory"
-                                min= 100 
-                                max: 10,000
+                                type="number"
+                                id="calories"
+                                min= "100" 
+                                max= "10000"
                                 placeholder="e.g.2000 cal"
                              >
                             <span class="unit">one meal has 400-650 calories.</span>
@@ -383,7 +386,7 @@
                                 type="number"
                                 id="water"
                                 min="0"
-                                max=10
+                                max="10"
                                 placeholder="e.g. 7 glasses"
                             >
                             <span class="unit">glasses</span>
@@ -397,7 +400,7 @@
                                 type="number"
                                 id="people"
                                 min="0"
-                                max=100
+                                max="100"
                                 placeholder="e.g. 4 friends"
                             >
                             <span class="unit">friends (a friend a day keeps the limiting beliefs at bay)</span>
@@ -450,7 +453,7 @@
 
             // Get values
             const sleep = parseFloat(document.getElementById("sleep").value);
-            const foodText = document.getElementById("food").value.trim();
+            const calories = parseFloat(dicument.getElementById("calories").value);
             const happiness = parseFloat(document.getElementById("happiness").value);
             const water = parseFloat(document.getElementById("water").value);
             const people = parseFloat(document.getElementById("people").value);
@@ -458,7 +461,7 @@
             // Make sure everything has been filled in
             if (
                 isNaN(sleep) ||
-                foodText === "" ||
+                isNan(calories) ||
                 isNaN(happiness) ||
                 isNaN(water) ||
                 isNaN(people)
@@ -466,12 +469,7 @@
                 alert("Please fill in all the information first! 💙");
                 return;
             }
-
-            // im fully aware that amount of calories needed differ from person to person
-            const calories = parseFloat(foodText) 
-                .map(meal => meal.trim())
-                .filter(meal => meal !== "")
-                .length;
+                
 
             // Check each requirement
             const sleepGood = sleep >= 7 && sleep <= 9;
@@ -517,6 +515,12 @@
                     "A few important areas were missed today. Be a little kinder to yourself tomorrow.";
                 result.classList.add("okay");
 
+             } else if (missed === 4) {
+                resultText.textContent = "🥺 Y MUST U DO THIS TO URSELF?";
+                resultMessage.textContent =
+                    "None of your health goals were met today. Are you ok? ";
+                result.classList.add("bad");
+
             } else if (missed === 5) {
                 resultText.textContent = "🥺 Y MUST U DO THIS TO URSELF?";
                 resultMessage.textContent =
@@ -529,7 +533,7 @@
         function resetPlanner() {
 
             document.getElementById("sleep").value = "";
-            document.getElementById("food").value = "";
+            document.getElementById("calories").value = "";
             document.getElementById("happiness").value = "";
             document.getElementById("water").value = "";
             document.getElementById("people").value = "";
