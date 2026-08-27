@@ -15,27 +15,30 @@
             min-height: 100vh;
             font-family: "Trebuchet MS", Arial, sans-serif;
             color: #102a43;
-            background: linear-gradient(270deg, #bde7ff 0%, #007BA7 100%);
+            background: linear-gradient(270deg, 00008B 0%, #007BA7 100%);
             overflow-x: hidden;
         }
 
         /* hell yes! clouds */
         .cloud {
             position: fixed;
-            background: white;
+            background: gray;
             border-radius: 100px;
             opacity: 0.8;
             z-index: 0;
         }
 
-        .cloud::before,
-        .cloud::after {
+        cloud-gray
+        .cloud-gray::before,
+        .cloud-gray::after {
             content: "";
             position: absolute;
-            background: white;
+            background: gray;
             border-radius: 50%;
+                   background: #D3D3D3
         }
 
+        
         .cloud::before {
             width: 70px;
             height: 70px;
